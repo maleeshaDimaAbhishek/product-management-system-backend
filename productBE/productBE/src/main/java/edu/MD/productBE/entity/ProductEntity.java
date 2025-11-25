@@ -1,4 +1,4 @@
-package edu.MD.productBE.model.entity;
+package edu.MD.productBE.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -17,7 +17,8 @@ import lombok.ToString;
 public class ProductEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
+
     private String name;
     private double price;
     private int stock;
