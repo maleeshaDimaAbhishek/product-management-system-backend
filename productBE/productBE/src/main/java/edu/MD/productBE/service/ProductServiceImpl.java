@@ -7,6 +7,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import tools.jackson.databind.ObjectMapper;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @RequiredArgsConstructor
 
@@ -17,5 +21,13 @@ public class ProductServiceImpl implements ProductService{
     @Override
     public ProductEntity save(ProductDTO productDTO) {
         return productRepository.save(objectMapper.convertValue(productDTO,ProductEntity.class));
+    }
+
+    @Override
+    public List<ProductDTO> findAll() {
+        List<ProductEntity> productEntities = productRepository.findAll();
+        return productEntities.stream()
+                .map(entity -> objectMapper.convertValue(entity, ProductDTO.class))
+                .collect(Collectors.toList());
     }
 }
