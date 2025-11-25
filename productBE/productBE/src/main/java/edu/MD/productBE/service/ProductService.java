@@ -11,4 +11,6 @@ public interface ProductService {
     List<ProductDTO> findAll();
 
     boolean deleteById(Integer id);
+
+    ProductEntity update(Integer id, ProductDTO productDTO);
 }

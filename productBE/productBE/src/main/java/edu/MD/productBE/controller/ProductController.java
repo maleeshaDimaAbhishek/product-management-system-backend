@@ -22,8 +22,12 @@ public class ProductController {
     public List<ProductDTO> findAll(){
         return productService.findAll()!=null?productService.findAll():null;
     }
-    @DeleteMapping("delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public boolean delete(@PathVariable Integer id){
         return productService.deleteById(id);
+    }
+    @PutMapping("/update/{id}")
+    public boolean update(@PathVariable Integer id,@RequestBody ProductDTO productDTO){
+        return productService.update(id,productDTO)!=null;
     }
 }

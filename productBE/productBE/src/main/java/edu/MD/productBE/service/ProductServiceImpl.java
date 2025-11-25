@@ -7,7 +7,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import tools.jackson.databind.ObjectMapper;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -38,5 +37,21 @@ public class ProductServiceImpl implements ProductService{
           return true;
       }
       return false;
+    }
+
+    @Override
+    public ProductEntity update(Integer id, ProductDTO productDTO) {
+        ProductEntity existing = productRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Product not found with id " + id));
+
+        // 2. Update fields
+        existing.setName(productDTO.getName());
+        existing.setPrice(productDTO.getPrice());
+        existing.setStock(productDTO.getStock());
+        existing.setCategory(productDTO.getCategory());
+        existing.setDescription(productDTO.getDescription());
+
+        // 3. Save updated entity
+        return productRepository.save(existing);
     }
 }
