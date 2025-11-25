@@ -30,4 +30,13 @@ public class ProductServiceImpl implements ProductService{
                 .map(entity -> objectMapper.convertValue(entity, ProductDTO.class))
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public boolean deleteById(Integer id) {
+      if(productRepository.existsById(id)){
+          productRepository.deleteById(id);
+          return true;
+      }
+      return false;
+    }
 }

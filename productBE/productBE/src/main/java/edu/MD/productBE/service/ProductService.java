@@ -9,4 +9,6 @@ public interface ProductService {
     ProductEntity save(ProductDTO productDTO);
 
     List<ProductDTO> findAll();
+
+    boolean deleteById(Integer id);
 }
